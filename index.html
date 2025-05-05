@@ -1,6 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+     @keyframes slideFadeIn {
+    0% {
+      transform: translate(-50%, -70%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+    50% {
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff;
+    }
+  }
+
+  .center-banner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 24px;
+    background: linear-gradient(90deg, rgba(15,164,233,0.9), rgba(0,122,255,0.9));
+    color: #ffffff;
+    padding: 20px 30px;
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    z-index: 999;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: slideFadeIn 1s ease-out forwards;
+  }
+
+  .center-banner span {
+    animation: pulseGlow 2s infinite;
+    display: inline-block;
+  }
+</style>
+
+<div class="center-banner">
+  <span>🌍 Explorando o Sistema Solar 🚀</span>
+</div>
+
+
+    <div id="titulo-central">Descobrindo o Sistema Solar</div>
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
 
     <meta charset="UTF-8">
@@ -11,6 +64,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
+      
     a-scene {
         display: block !important;
     }
@@ -90,6 +144,59 @@
       }
     </script>
   </head>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    @keyframes slideFadeIn {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff;
+      }
+      50% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff;
+      }
+    }
+  
+    .top-banner {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+      background: linear-gradient(90deg, rgba(15,164,233,0.9), rgba(0,122,255,0.9));
+      color: #ffffff;
+      padding: 15px 10px;
+      font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      border-bottom: 2px solid #00bfff;
+      border-radius: 0 0 12px 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      animation: slideFadeIn 1s ease-out forwards;
+    }
+  
+    .top-banner span {
+      animation: pulseGlow 2s infinite;
+      display: inline-block;
+    }
+  </style>
+  
+  <!-- Coloque isso no <body> -->
+  <div class="top-banner">
+    <span>🚀 DESCUBRA O SISTEMA SOLAR 🌌</span>
+  </div>
+
+
   <body style="margin: 0; overflow: hidden; background-color: #121212; color: white;">
     <a-scene embedded arjs="sourceType: webcam;">
       <a-assets>
