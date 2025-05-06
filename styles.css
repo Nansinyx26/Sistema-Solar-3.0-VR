@@ -9,7 +9,7 @@ html, body {
   padding: 0;
   font-family: 'Arial', sans-serif;
   background-color: #121212;
-  color: rgb(149, 0, 235);
+  color: rgb(14, 185, 253);
   scroll-behavior: smooth;
   min-height: 100vh;
 }
@@ -83,7 +83,7 @@ div textarea:focus {
 
 /* Botão */
 .form-container button {
-  background-color: #6200ea;
+  background-color: rgba(15, 164, 233, 0.9);
   color: #fff;
   border: none;
   padding: 14px;
