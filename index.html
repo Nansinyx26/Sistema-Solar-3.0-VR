@@ -199,28 +199,37 @@
   </div>
 
 
-  <body style="margin: 0; overflow: hidden; background-color: #121212; color: white;">
-    <a-scene embedded arjs="sourceType: webcam;">
-      <a-assets>
-        <img id="marker" src="marker.jpg" />
-      </a-assets>
+  <style>
+    body {
+      margin: 0; overflow: hidden; background-color: #121212; color: white; 
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #121212;
+      background-image: url('https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-c568-61f7-9111-567a0d448457/raw?se=2025-05-06T14%3A19%3A31Z&sp=r&sv=2024-08-04&sr=b&scid=d7a25e41-f68d-515b-aa2e-ba592e0a9d50&skoid=365eb242-95ba-4335-a618-2c9f8f766a86&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-06T03%3A13%3A55Z&ske=2025-05-07T03%3A13%3A55Z&sks=b&skv=2024-08-04&sig=LmUdCCFYeAASG0J1nIyh%2BmRuv2tL9WeQgcT/PS0rM%2Bg%3D');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position:  center ;
+      background-attachment: fixed;
+      color: white;
+    }
 
-      <!-- Certifique-se de que o caminho para marker.patt esteja correto -->
-      <a-marker type="pattern" url="marker.patt" markerhandler>
-        <a-sphere position="0 0.5 0" radius="0.5" color="yellow" visible="false"></a-sphere>
-        <a-sphere position="1.5 0.5 0" radius="0.5" color="grey" visible="false"></a-sphere>
-        <a-sphere position="3 0.5 0" radius="0.5" color="blue" visible="false"></a-sphere>
-        <a-sphere position="-1.5 0.5 0" radius="0.5" color="red" visible="false"></a-sphere>
-        <a-sphere position="-3 0.5 0" radius="0.5" color="orange" visible="false"></a-sphere>
-        <a-sphere position="-4.5 0.5 0" radius="0.5" color="brown" visible="false"></a-sphere>
-        <a-sphere position="6 0.5 0" radius="0.5" color="pink" visible="false"></a-sphere>
+    /* Se ainda quiser as imagens laterais */
+    .imagem-lateral {
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      transform: translateY(-50%);
+    }
 
-        <a-camera-static></a-camera-static>
-      </a-marker>
+    .esquerda {
+      left: 10px;
+    }
 
-      <a-entity camera></a-entity>
-    </a-scene>
-   
+    .direita {
+      right: 10px;
+    }
+  </style>
 
     <!-- Formulário de Perguntas com Scroll -->
     <div style=" position: absolute; top: 50%;left: 50%;transform: translate(-50%, -50%); width: 100%;max-width: 720px;height: 95vh;overflow-y: auto;background-color: rgba(0, 0, 0, 0.88);padding: 32px;border-radius: 16px;box-shadow: 0 4px 16px rgba(0,0,0,0.7);
