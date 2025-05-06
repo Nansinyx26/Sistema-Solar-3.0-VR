@@ -1,89 +1,134 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <style>
-     
-@keyframes slideFadeIn {
-    0% {
-      transform: translate(-50%, -70%);
-      opacity: 0;
-    }
-    100% {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% {
-      text-shadow: 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff;
-    }
-    50% {
-      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff;
-    }
-  }
-
-  .center-banner {
-    position: fixed;
-    top: 50%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 24px;
-    background: linear-gradient(90deg, rgba(15,164,233,0.9), rgba(0,122,255,0.9));
-    color: #ffffff;
-    padding: 20px 30px;
-    font-family: 'Orbitron', 'Segoe UI', sans-serif;
-    z-index: 999;
-    border-radius: 16px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    font-weight: bold;
-    letter-spacing: 2px;
-    animation: slideFadeIn 1s ease-out forwards;
-  }
-
-  .center-banner span {
-    animation: pulseGlow 4s infinite;
-    display: inline-block;
-  }
-</style>
-
-<div class="center-banner">
-  <span>🌍 Explorando o Sistema Solar 🚀</span>
-
-</div>
-
-
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nandev</title>
 
-    <!-- Corrigir o caminho do CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Fontes e CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 
     <style>
-      
-    a-scene {
+      a-scene {
         display: block !important;
-    }
-
-    #a-enter-vr-button, .a-loader-title {
+      }
+      #a-enter-vr-button,
+      .a-loader-title {
         display: none !important;
-    }
-  </style>
+      }
 
-    <!-- Scripts A-Frame e AR.js -->
+      @keyframes slideFadeIn {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          text-shadow: 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff;
+        }
+        50% {
+          text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff;
+        }
+      }
+
+      .top-banner {
+        position: fixed;
+        top: 0;
+        width: 20%;
+        left: 0%;
+        text-align: center;
+        font-size: 22px;
+        background: linear-gradient(90deg, rgba(15, 164, 233, 0.9), rgba(0, 122, 255, 0.9));
+        color: #ffffff;
+        padding: 15px 10px;
+        font-family: 'Orbitron', 'Segoe UI', sans-serif;
+        z-index: 999;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        border-bottom: 2px solid #00bfff;
+        border-radius: 0 0 12px 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        animation: slideFadeIn 1s ease-out forwards;
+      }
+
+      .top-banner span {
+        animation: pulseGlow 2s infinite;
+        display: inline-block;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #121212;
+        background-image: url('../imagen/fundo.png.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+      }
+
+      .imagem-lateral {
+        position: absolute;
+        top: 50%;
+        width: 100px;
+        transform: translateY(-50%);
+      }
+
+      .esquerda {
+        left: 10px;
+      }
+
+      .direita {
+        right: 10px;
+      }
+
+      .form-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 720px;
+        height: 95vh;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.88);
+        padding: 32px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+      }
+
+      .form-wrapper label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .form-wrapper input[type='text'] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+      }
+    </style>
+
+    <!-- A-Frame / AR.js -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-    
+
+    <!-- Script de verificação -->
     <script>
       AFRAME.registerComponent("markerhandler", {
         init: function () {
           this.el.sceneEl.addEventListener("markerFound", () => {
-            // Exibe os planetas quando o marcador é encontrado
             const planets = document.querySelectorAll("a-sphere");
             planets.forEach((planet) => {
               planet.setAttribute("visible", "true");
@@ -91,7 +136,6 @@
           });
 
           this.el.sceneEl.addEventListener("markerLost", () => {
-            // Oculta os planetas quando o marcador é perdido
             const planets = document.querySelectorAll("a-sphere");
             planets.forEach((planet) => {
               planet.setAttribute("visible", "false");
@@ -101,175 +145,76 @@
       });
 
       function verificarRespostas() {
-        const respostaSol = document.getElementById("respostaSol").value;
-        const respostaMercurio = document.getElementById("respostaMercurio").value;
-        const respostaVenus = document.getElementById("respostaVenus").value;
-        const respostaTerra = document.getElementById("respostaTerra").value;
-        const respostaMarte = document.getElementById("respostaMarte").value;
-        const respostaJupiter = document.getElementById("respostaJupiter").value;
-        const respostaSaturno = document.getElementById("respostaSaturno").value;
-        const respostaUrano = document.getElementById("respostaUrano").value;
-        const respostaNetuno = document.getElementById("respostaNetuno").value;
-        const respostaPlutao = document.getElementById("respostaPlutao").value;
-
-        const respostasCorretas = {
-          Sol: "Sol",
-          Mercurio: "Mercurio",
-          Venus: "Venus",
-          Terra: "Terra",
-          Marte: "Marte",
-          Jupiter: "Jupiter",
-          Saturno: "Saturno",
-          Urano: "Urano",
-          Netuno: "Netuno",
-          Plutao: "Plutao"
-        };
+        const respostas = {
+         Sol: "sol",
+         Mercurio: "mercurio",
+         Venus: "venus",
+         Terra: "terra",
+         Marte: "marte",
+         Jupiter: "jupiter",
+         Saturno: "saturno",
+         Urano: "urano",
+         Netuno: "netuno",
+         Plutao: "plutao"
+};
 
         let corretas = 0;
         let erradas = 0;
 
-        if (respostaSol === respostasCorretas.Sol) corretas++; else erradas++;
-        if (respostaMercurio === respostasCorretas.Mercurio) corretas++; else erradas++;
-        if (respostaVenus === respostasCorretas.Venus) corretas++; else erradas++;
-        if (respostaTerra === respostasCorretas.Terra) corretas++; else erradas++;
-        if (respostaMarte === respostasCorretas.Marte) corretas++; else erradas++;
-        if (respostaJupiter === respostasCorretas.Jupiter) corretas++; else erradas++;
-        if (respostaSaturno === respostasCorretas.Saturno) corretas++; else erradas++;
-        if (respostaUrano === respostasCorretas.Urano) corretas++; else erradas++;
-        if (respostaNetuno === respostasCorretas.Netuno) corretas++; else erradas++;
-        if (respostaPlutao === respostasCorretas.Plutao) corretas++; else erradas++;
-        alert(`Respostas corretas: ${corretas}\nRespostas erradas: ${erradas}`);
+        for (const planeta in respostas) {
+          const valor = document.getElementById("resposta" + planeta).value.trim().toLowerCase();
+          if (valor === respostas[planeta]) corretas++;
+          else erradas++;
+        }
 
-        // Redirecionar para a próxima página
+        alert(`Respostas corretas: ${corretas}\nRespostas erradas: ${erradas}`);
         window.location.href = "pagina2.html";
       }
     </script>
   </head>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    @keyframes slideFadeIn {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-  
-    @keyframes pulseGlow {
-      0%, 100% {
-        text-shadow: 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff;
-      }
-      50% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff;
-      }
-    }
-  
-    .top-banner {
-      position: fixed;
-      top: 0;
-      width: 20%;
-      left: 0%;
-      text-align: center;
-      font-size: 22px;
-      background: linear-gradient(90deg, rgba(15,164,233,0.9), rgba(0,122,255,0.9));
-      color: #ffffff;
-      padding: 15px 10px;
-      font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      border-bottom: 2px solid #00bfff;
-      border-radius: 0 0 12px 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      animation: slideFadeIn 1s ease-out forwards;
-    }
-  
-    .top-banner span {
-      animation: pulseGlow 2s infinite;
-      display: inline-block;
-    }
-  </style>
-  
-  <!-- Coloque isso no <body> -->
-  <div class="top-banner">
-    <span>🚀  O SISTEMA SOLAR 🌌</span>
-  </div>
 
+  <body>
+    <!-- Banner superior -->
+    <div class="top-banner">
+      <span>🚀 O SISTEMA SOLAR 🌌</span>
+    </div>
 
-  <style>
-    body {
-      margin: 0; overflow: hidden; background-color: #121212; color: white; 
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-      background-color: #121212;
-      background-image: url('https://raw.githubusercontent.com/Nansinyx26/Sistema-Solar-3.0-VR/main/imagen/fundo.png.png');
-      background-size: 100% 100%;
-      background-position:  center ;
-      background-attachment: fixed;
-      color: white;
-    }
+    <!-- Formulário -->
+    <div class="form-container">
+      <label for="respostaSol">Qual o nome da estrela do nosso sistema?</label>
+      <input type="text" id="respostaSol" placeholder="Resposta" />
 
-    /* Se ainda quiser as imagens laterais */
-    .imagem-lateral {
-      position: absolute;
-      top: 50%;
-      width: 100px;
-      transform: translateY(-50%);
-    }
+      <label for="respostaMercurio">Qual o nome do nosso Primeiro planeta do Sistema?</label>
+      <input type="text" id="respostaMercurio" placeholder="Resposta" />
 
-    .esquerda {
-      left: 10px;
-    }
+      <label for="respostaVenus">Qual o nome do nosso Segundo planeta do Sistema?</label>
+      <input type="text" id="respostaVenus" placeholder="Resposta" />
 
-    .direita {
-      right: 10px;
-    }
-  </style>
+      <label for="respostaTerra">Qual o nome do nosso Terceiro planeta do Sistema?</label>
+      <input type="text" id="respostaTerra" placeholder="Resposta" />
 
-    <!-- Formulário de Perguntas com Scroll -->
-    <div style=" position: absolute; top: 50%;left: 50%;transform: translate(-50%, -50%); width: 100%;max-width: 720px;height: 95vh;overflow-y: auto;background-color: rgba(0, 0, 0, 0.88);padding: 32px;border-radius: 16px;box-shadow: 0 4px 16px rgba(0,0,0,0.7);
-">
-      <label for="respostaSol" style="display: block; margin-bottom: 8px;">Qual o nome da estrela do nosso sistema?</label>
-      <input type="text" id="respostaSol" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaMarte">Qual o nome do nosso Quarto planeta do Sistema?</label>
+      <input type="text" id="respostaMarte" placeholder="Resposta" />
 
-      <label for="respostaMercurio" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Primeiro planeta do Sistema?</label>
-      <input type="text" id="respostaMercurio" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaJupiter">Qual o nome do nosso Quinto planeta do Sistema?</label>
+      <input type="text" id="respostaJupiter" placeholder="Resposta" />
 
-      <label for="respostaVenus" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Segundo planeta do Sistema?</label>
-      <input type="text" id="respostaVenus" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaSaturno">Qual o nome do nosso Sexto planeta do Sistema?</label>
+      <input type="text" id="respostaSaturno" placeholder="Resposta" />
 
-      <label for="respostaTerra" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Terceiro planeta do Sistema?</label>
-      <input type="text" id="respostaTerra" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaUrano">Qual o nome do nosso Sétimo planeta do Sistema?</label>
+      <input type="text" id="respostaUrano" placeholder="Resposta" />
 
-      <label for="respostaMarte" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Quarto planeta do Sistema?</label>
-      <input type="text" id="respostaMarte" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaNetuno">Qual o nome do nosso Oitavo planeta do Sistema?</label>
+      <input type="text" id="respostaNetuno" placeholder="Resposta" />
 
-      <label for="respostaJupiter" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Quinto planeta do Sistema?</label>
-      <input type="text" id="respostaJupiter" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <label for="respostaPlutao">Qual o nome do nosso Nono planeta do Sistema?</label>
+      <input type="text" id="respostaPlutao" placeholder="Resposta" />
 
-      <label for="respostaSaturno" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Sexto planeta do Sistema?</label>
-      <input type="text" id="respostaSaturno" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-
-      <label for="respostaUrano" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Sétimo planeta do Sistema?</label>
-      <input type="text" id="respostaUrano" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-      
-      <label for="respostaNetuno" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Oitavo planeta do Sistema?</label>
-      <input type="text" id="respostaNetuno" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-
-      <label for="respostaPlutao" style="display: block; margin-bottom: 8px;">Qual o nome do nosso Nono planeta do Sistema?</label>
-      <input type="text" id="respostaPlutao" placeholder="Resposta" style="width: 100%; padding: 8px; margin-bottom: 15px;">
-
-      <button onclick="verificarRespostas()" style="width: 100%; padding: 12px; margin-top: 10px; background-color: #6200ea; color: white; border: none; cursor: pointer; border-radius: 4px;">
-        Verificar Respostas
-      </button>
-
-      <button onclick="window.location.href = 'pagina2.html'" style="width: 100%; padding: 12px; margin-top: 10px; background-color: #6200ea; color: white; border: none; cursor: pointer; border-radius: 4px;">
-        Ir para Página 2
-      </button>
+      <div class="form-container">
+        <button onclick="verificarRespostas()">Verificar Respostas</button>
+        <button onclick="window.location.href = 'pagina2.html'">Ir para Página 2</button>
+      </div>
     </div>
   </body>
 </html>
