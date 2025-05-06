@@ -19,6 +19,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Imagem de fundo responsiva */
+  background-image: url('https://raw.githubusercontent.com/Nansinyx26/Sistema-Solar-3.0-VR/main/imagen/fundo.png.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Media query para dispositivos menores */
+@media (max-width: 768px) {
+  body {
+    background-size: contain;
+    background-position: top center;
+  }
 }
 
 /* Container do formulário */
