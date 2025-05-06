@@ -40,37 +40,90 @@
       }
 
       .top-banner {
-        position: fixed;
-        top: 3%;
-        width: 20%;
-        left: 10%;
-        text-align: center;
-        font-size: 22px;
-        background: linear-gradient(90deg, rgba(15, 164, 233, 0.9), rgba(0, 122, 255, 0.9));
-        color: #ffffff;
-        padding: 15px 10px;
-        font-family: 'Orbitron', 'Segoe UI', sans-serif;
-        z-index: 999;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        border-bottom: 2px solid #00bfff;
-        border-radius: 0 0 12px 12px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        animation: slideFadeIn 1s ease-out forwards;
-      }
+    position: fixed;
+    top: 3%;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    font-size: 1.2rem;
+    background: linear-gradient(90deg, rgba(15, 164, 233, 0.9), rgba(0, 122, 255, 0.9));
+    color: #ffffff;
+    padding: 15px 10px;
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #00bfff;
+    border-radius: 0 0 12px 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: slideFadeIn 1s ease-out forwards;
+}
 
-      .top-banner span {
-        animation: pulseGlow 2s infinite;
-        display: inline-block;
-      }
+.top-banner span {
+    animation: pulseGlow 2s infinite;
+    display: inline-block;
+}
+
+/* Animação de entrada do banner */
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Efeito pulsante no texto */
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #00bfff, 0 0 15px #00bfff;
+    }
+    50% {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+    }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+    .top-banner {
+        font-size: 1rem;
+        padding: 12px 8px;
+    }
+}
+
+
+/* Animação de entrada suave */
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 480px) {
+    .top-banner {
+        font-size: 1rem;
+        padding: 10px 8px;
+    }
+}
+
 
       body {
         margin: 0;
         padding: 0;
         height: 100vh;
         background-color: #121212;
-        background-image: url('https://raw.githubusercontent.com/Nansinyx26/Sistema-Solar-3.0-VR/main/imagen/fundo.png.png
-');
+        background-image: url('../imagen/fundo.png.png');
         background-size: 100% 100%;
         background-position: center;
         background-attachment: fixed;
